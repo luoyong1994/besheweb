@@ -1,6 +1,4 @@
 <template>
-  <div style="width:100%;height:850px;background-color:#ffff;padding-top:20px;">
-    <div>
       <el-form :label-position="position" label-width="80px" :model="formLabelAlign" :rules="rules" ref="formLabelAlign" class="demo-ruleForm">
         <el-form-item label="用户名" prop="userName">
           <el-input v-model="formLabelAlign.userName"></el-input>
@@ -14,18 +12,17 @@
         <el-form-item label="人员类型" prop="userType" size="medium">
           <el-radio-group v-model="formLabelAlign.userType">
             <el-radio label="1">管理员</el-radio>
-            <el-radio label="0">读者</el-radio>
+            <el-radio label="0">校内用户</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('formLabelAlign')">立即创建</el-button>
         </el-form-item>
       </el-form>
-    </div>
-  </div>
 </template>
 
 <script>
+/* eslint-disable */
 import { addAdmin } from "@/api/api";
 export default {
   name: "",
@@ -97,9 +94,6 @@ export default {
   watch: {}
 };
 </script>
-<style lang='' scoped>
-div {
-  width: 600px;
-  margin: 10px auto;
-}
+<style>
+
 </style>

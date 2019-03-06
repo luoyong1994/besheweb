@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" class="demo-ruleForm controll" size="medium">
+    <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" size="medium">
       <el-form-item class="item">
         <div v-show="error">
           <el-alert center title="用户名密码错误" type="error" show-icon :closable=false>
@@ -13,8 +13,9 @@
       <el-form-item label="密 码" prop="passWord" class="item">
         <el-input type="password" v-model="loginForm.passWord" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item class="item login_button">
+      <el-form-item class="item">
         <el-button type="primary" @click="login('loginForm')">登录</el-button>
+        <el-button @click="register()">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { login } from "@/api/api";
 export default {
   name: "",
@@ -40,10 +42,10 @@ export default {
       } else {
         //操作密码
         //加密
-      };
-      var validateTip =(rule, value, callback)=>{
-        this.error=false;
       }
+      var validateTip = (rule, value, callback) => {
+        this.error = false;
+      };
     };
     return {
       loginForm: {
@@ -76,7 +78,7 @@ export default {
         sysuser.userPassword = this.loginForm.passWord;
         login(sysuser).then(res => {
           if (res.state == 0) {
-            this.error=false;
+            this.error = false;
             this.$router.push({
               name: "navigator",
               params: { userName: this.loginForm.userName }
@@ -86,22 +88,17 @@ export default {
           }
         });
       }
+    },
+    register: function() {
+      this.$router.push({name:"userRegister",params:{}});
     }
   },
 
   watch: {}
 };
 </script>
-<style lang='' scoped>
-.controll {
-  height: 300px;
-  width: 400px;
-  margin: 300px auto;
-}
-.item {
-  margin: 30px 0px;
-}
-.login_button {
-  margin-top: -9px;
+<style>
+div label{
+  margin-top: 18px;
 }
 </style>

@@ -22,6 +22,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { login } from "@/api/api";
 export default {
   name: "",
@@ -48,7 +49,8 @@ export default {
     return {
       loginForm: {
         userName: "admin",
-        passWord: "admin"
+        passWord: "admin",
+        userType:"2"
       },
       rules: {
         userName: [{ validator: validateUserName, trigger: "blur" }],
@@ -71,14 +73,11 @@ export default {
   methods: {
     login: function(refForm) {
       if (this.loginForm.userName && this.loginForm.passWord) {
-        var sysuser = {};
-        sysuser.userName = this.loginForm.userName;
-        sysuser.userPassword = this.loginForm.passWord;
-        login(sysuser).then(res => {
+        login(this.loginForm).then(res => {
           if (res.state == 0) {
             this.error=false;
             this.$router.push({
-              name: "navigator",
+              name: "adminNavigator",
               params: { userName: this.loginForm.userName }
             });
           } else {
@@ -92,7 +91,7 @@ export default {
   watch: {}
 };
 </script>
-<style lang='' scoped>
+<style>
 .controll {
   height: 300px;
   width: 400px;

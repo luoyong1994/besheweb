@@ -1,35 +1,14 @@
 <template>
-<div>
   <router-view></router-view>
-</div>
 </template>
+
 <script>
 
-  export default {
-    name:'',
-    props:[''],
-    data () {
-      return {
-
-      };
-    },
-
-    components: {},
-
-    computed: {},
-
-    beforeMount() {},
-
-    mounted() {},
-
-    methods: {
-      
-    },
-
-    watch: {}
-
-  }
-
+export default {
+  name: 'app',
+  components: {}
+}
 </script>
+
 <style>
 </style>
