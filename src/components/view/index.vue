@@ -34,7 +34,7 @@
   }
 
 </script>
-<style>
+<style scoped>
 .index{
   margin:5px auto;
   width: 840px;

@@ -91,7 +91,7 @@ export default {
   watch: {}
 };
 </script>
-<style>
+<style scoped>
 .controll {
   height: 300px;
   width: 400px;

@@ -97,8 +97,6 @@ export default {
   watch: {}
 };
 </script>
-<style>
-div label{
-  margin-top: 18px;
-}
+<style scoped>
+
 </style>

@@ -61,7 +61,7 @@ export default {
   watch: {}
 };
 </script>
-<style>
+<style scoped>
 /* eslint-disable */
 img {
   height: 600px;
