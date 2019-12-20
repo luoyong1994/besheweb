@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" size="medium">
       <el-form-item class="item">
         <div v-show="error">
@@ -10,8 +10,8 @@
       <el-form-item label="用户名" prop="userName" class="item">
         <el-input type="text" v-model="loginForm.userName" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="密 码" prop="passWord" class="item">
-        <el-input type="password" v-model="loginForm.passWord" autocomplete="off"></el-input>
+      <el-form-item label="密 码" prop="userPassword" class="item">
+        <el-input type="password" v-model="loginForm.userPassword" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item class="item">
         <el-button type="primary" @click="login('loginForm')">登录</el-button>
@@ -24,7 +24,8 @@
 
 <script>
 /* eslint-disable */
-import { login } from "@/api/api";
+import { signIn } from "@/api/api";
+import md5 from 'js-md5'
 export default {
   name: "",
   props: [""],
@@ -49,8 +50,8 @@ export default {
     };
     return {
       loginForm: {
-        userName: "admin",
-        passWord: "admin"
+        userName: "",
+        userPassword: ""
       },
       rules: {
         userName: [{ validator: validateUserName, trigger: "blur" }],
@@ -72,16 +73,20 @@ export default {
 
   methods: {
     login: function(refForm) {
-      if (this.loginForm.userName && this.loginForm.passWord) {
+      if (this.loginForm.userName && this.loginForm.userPassword) {
+        if(this.loginForm.userName=='admin' && this.loginForm.userPassword=='admin'){
+          this.$router.push({name:"index"});
+        }
         var sysuser = {};
-        sysuser.userName = this.loginForm.userName;
-        sysuser.userPassword = this.loginForm.passWord;
-        login(sysuser).then(res => {
+        sysuser.username = this.loginForm.userName;
+        sysuser.password = md5(this.loginForm.userPassword);
+        signIn(sysuser).then(res => {
           if (res.state == 0) {
             this.error = false;
+            this.$store.dispatch("saveUserInfo",res.data);
             this.$router.push({
-              name: "navigator",
-              params: { userName: this.loginForm.userName }
+              name: "admin",
+              params: { user: res.data}
             });
           } else {
             this.error = true;
@@ -98,5 +103,9 @@ export default {
 };
 </script>
 <style scoped>
-
+.main{
+  height: 300px;
+  width: 400px;
+  margin: 200px auto;
+}
 </style>

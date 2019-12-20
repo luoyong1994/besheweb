@@ -13,11 +13,19 @@ const state = { //状态，用于组件之间的通讯
         avatar: 'default.jpg'
     },
     user: {},
+    customerListInfo:[],
+    searchContent:"",
 }
 
 const mutations = { //立即触发状态，用于同步进行状态触发
     saveUserInfo(state, userInfo) {
         state.user = userInfo;
+    },
+    saveCustomerListInfo(state, customerListInfo){
+        state.customerListInfo = customerListInfo;
+    },
+    saveSearchContent(state, searchContent){
+        state.searchContent = searchContent;
     }
 }
 
@@ -40,6 +48,13 @@ const actions = { //异步触发状态，用户异步触发mutations,从而更�
         commit
     }, userInfo) {
         commit('saveUserInfo', userInfo)
+    },
+    
+    saveCustomerListInfo({commit}, customerListInfo) {
+        commit('saveCustomerListInfo', customerListInfo)
+    },
+    saveSearchContent({commit}, searchContent) {
+        commit('saveSearchContent', searchContent)
     }
 }
 
