@@ -1,23 +1,26 @@
 <template>
-  <el-table :data="tableData" :stripe="status" style="width: 100%;padding-left:10px;" height="850px">
-    <el-table-column prop="id" label="id" width="350">
-    </el-table-column>
-    <el-table-column prop="username" label="用户名">
-    </el-table-column>
-    <el-table-column prop="name" label="姓名">
-    </el-table-column>
-    <el-table-column prop="tel" label="电话">
-    </el-table-column>
-    <el-table-column prop="qq" label="qq">
-    </el-table-column>
-    <el-table-column  label="操作">
+  <el-table
+    :data="tableData"
+    :stripe="status"
+    style="width: 100%;padding-left:10px;"
+  >
+    <el-table-column prop="id" label="id" width="350"></el-table-column>
+    <el-table-column prop="username" label="用户名"></el-table-column>
+    <el-table-column prop="name" label="姓名"></el-table-column>
+    <el-table-column prop="tel" label="电话"></el-table-column>
+    <el-table-column prop="qq" label="qq"></el-table-column>
+    <el-table-column label="操作">
       <template slot-scope="scope">
-        <el-button @click.native.prevent="deleteRow(scope.$index, tableData)" type="danger" size="small">
-          删除
-        </el-button>
-        <el-button @click.native.prevent="updateUser(scope.$index, tableData)" type="warning" size="small">
-          修改
-        </el-button>
+        <el-button
+          @click.native.prevent="deleteRow(scope.$index, tableData)"
+          type="danger"
+          size="small"
+        >删除</el-button>
+        <el-button
+          @click.native.prevent="updateUser(scope.$index, tableData)"
+          type="warning"
+          size="small"
+        >修改</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -25,7 +28,7 @@
 
 <script>
 /* eslint-disable */
-import { queryUsers } from "@/api/api";
+import { queryUsers, deleteUser } from "@/api/api";
 export default {
   name: "",
   props: [""],
@@ -60,6 +63,8 @@ export default {
         .then(() => {
           var sysuser = {};
           sysuser = tableData[index];
+          sysuser.roles = [];
+          sysuser.password = "";
           deleteUser(sysuser).then(res => {
             if (res.state == 0) {
               tableData.splice(index, 1);
@@ -83,6 +88,10 @@ export default {
     },
 
     updateUser: function(index, tableData) {
+      this.$message({
+        type: "info",
+        message: "该功能还未完成开发，如需要，请联系管理员!"
+      });
       return;
       var formLabelAlign = tableData[index];
       this.$router.push({

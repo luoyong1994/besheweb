@@ -67,7 +67,7 @@ export default {
   methods: {
     handleClick(index, rows) {
       this.$router.push({
-        name: "orderDetail",
+        name: "newOrderDetal",
         params: { order: rows[index] }
       });
     }

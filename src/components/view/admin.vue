@@ -28,16 +28,23 @@
             <template slot="title">
               <i class="el-icon-message"></i>订单管理
             </template>
-            <el-menu-item index="queryOrder">订单查看</el-menu-item>
-            <el-menu-item index="queryAcceptOrder">预约订单查看</el-menu-item>
             <el-menu-item index="addOrder">订单上传</el-menu-item>
+            <el-menu-item index="queryAcceptOrder">外包预约订单查看</el-menu-item>
+            <el-menu-item index="queryOrder">订单查看</el-menu-item>
+            <el-menu-item index="orderBill">订单结账</el-menu-item>
           </el-submenu>
-          <el-submenu index="2">
+          <el-submenu index="3">
             <template slot="title">
               <i class="el-icon-message"></i>技术管理
             </template>
             <el-menu-item index="classify">分类管理</el-menu-item>
             <!-- <el-menu-item index="#">查看分类</el-menu-item> -->
+          </el-submenu>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="el-icon-message"></i>统计
+            </template>
+            <el-menu-item index="orderCount">完成订单统计</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>

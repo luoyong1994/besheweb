@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header-addUser">
     <el-form
       :label-position="position"
       label-width="100px"
@@ -23,7 +23,7 @@
       <el-form-item label="qq" prop="qq">
         <el-input v-model="formLabelAlign.qq" placeholder="请输入qq"></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item class="btn-area">
         <el-button type="primary" @click="submitForm('formLabelAlign')">立即创建</el-button>
         <el-button type="info" @click="goback">返回</el-button>
       </el-form-item>
@@ -116,9 +116,13 @@ export default {
   watch: {}
 };
 </script>
-<style scoped>
-.header {
+<style >
+.header-addUser {
   margin: 10px auto;
   width: 500px;
+}
+
+.btn-area .el-form-item__content{
+  padding-left: 84px;
 }
 </style>

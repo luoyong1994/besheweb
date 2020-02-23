@@ -113,7 +113,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <!-- <el-upload
+        <el-upload
           class="upload-demo"
           action="http://localhost:8080/bishe/file/upload.do"
           :before-remove="beforeRemove"
@@ -122,8 +122,8 @@
           drag
           :before-upload="checkFile"
           :on-success="handleSuccess"
-        > -->
-          <el-upload
+        >
+          <!-- <el-upload
           class="upload-demo"
           action="http://39.98.163.208:8080/file/upload.do"
           :before-remove="beforeRemove"
@@ -132,7 +132,7 @@
           drag
           :before-upload="checkFile"
           :on-success="handleSuccess"
-          >
+          >-->
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">
             将文件拖到此处，或
@@ -177,8 +177,8 @@ export default {
         shop: "",
         wantName: "",
         qq: "",
-        serviceQQ:"",
-        customerQQ:"",
+        serviceQQ: "",
+        customerQQ: "",
         projectName: "",
         technology: "",
         orderDate: "",
@@ -236,7 +236,7 @@ export default {
   methods: {
     handleCurrentChange(currentRow, oldCurrentRow) {
       this.formLabelAlign.serviceQQ = currentRow.qq;
-      this.dialogTableVisible=false;
+      this.dialogTableVisible = false;
     },
 
     selectCustomer() {
@@ -266,14 +266,25 @@ export default {
             var response = files[i].response;
             if (response != undefined && response.state != 1) {
               if (
-                response.lastName.toLowerCase() == "docx" ||
-                response.lastName.toLowerCase() == "doc"
+                response.data.fileName
+                  .substring(response.data.fileName.lastIndexOf("."))
+                  .toLowerCase() == "docx" ||
+                response.data.fileName
+                  .substring(response.data.fileName.lastIndexOf("."))
+                  .toLowerCase() == "doc"
               ) {
-                orderInfo.docName = response.fileName + "." + response.lastName;
-                orderInfo.docPath = response.url;
+                if (orderInfo.docName) {
+                  this.$message({
+                    message: "只能保存一份word需求文档，请删除多余的文档",
+                    type: "warn"
+                  });
+                  break;
+                }
+                orderInfo.docName = response.data.fileName;
+                orderInfo.docPath = response.data.fileId;
                 continue;
               }
-              imagePath += response.url + ";";
+              imagePath += response.fileId + ";";
             }
           }
           if (imagePath.length > 0) {

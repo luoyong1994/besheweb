@@ -6,13 +6,13 @@ import {
 
 //封装请求方法
 
-// export const queryUser = data=>post("user/queryUser.do",data);
-// export const updateUser = data =>post("user/updateUser.do", data);
-// export const deleteUser = data => post("user/deleteUser.do", data);
-// export const addView = data =>post("view/addView.do",data);
-// export const queryView = data =>post("view/queryView.do",data)
-// export const deleteView = data => post("view/deleteView.do", data);
-// export const updateView = data =>post("view/updateView.do", data);
+export const queryUser = data=>post("user/queryUser.do",data);
+export const updateUser = data =>post("user/updateUser.do", data);
+export const deleteUser = data => post("user/deleteUser.do", data);
+export const addView = data =>post("view/addView.do",data);
+export const queryView = data =>post("view/queryView.do",data)
+export const deleteView = data => post("view/deleteView.do", data);
+export const updateView = data =>post("view/updateView.do", data);
 
 
 export const queryUsers = data => post("user/queryUsers.do", data);
@@ -40,3 +40,9 @@ export const addAcceptOrderFlow =data =>post("customer/addAcceptOrderFlow.do",da
 
 //登录
 export const signIn =data =>post("user/signIn.do",data);
+
+export const addOutSource = data=>post("order/addOutsource.do",data);
+
+export const queryOrderAllDetail = data=>post("order/queryOrderAllDetail.do",data);
+
+export const orderBill = data=>post("order/orderBill.do",data);

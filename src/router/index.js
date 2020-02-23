@@ -15,56 +15,62 @@ import orderList from "../components/view/orderList.vue";
 import orderDetail from "../components/view/orderDetail.vue";
 import classify from "../components/view/addClassify.vue";
 import queryClassify from "../components/view/queryClassify.vue";
+import newOrderDetal from "../components/view/newOrderDetail.vue";
+import inorderDetail from "../components/view/inorderDetail.vue";
+import orderBill from "../components/view/orderBill.vue";
+import orderCount from "../components/view/orderCount.vue"
 
-const router =  new Router({
-  routes: [
-   {
+const router = new Router({
+  routes: [{
       path: "/",
       name: "index",
       component: index,
       props: true,
-      children:[
-        {
+      children: [{
           path: "/orderList",
           name: "orderList",
           component: orderList,
           props: true
         },
         {
-          path:"/orderDetail",
-          name:"orderDetail",
-          component:orderDetail,
-          props:true
+          path: "/orderDetail",
+          name: "orderDetail",
+          component: orderDetail,
+          props: true
+        }, {
+          path: "/newOrderDetail",
+          name: "newOrderDetal",
+          component: newOrderDetal,
+          props: true
         }
       ]
     },
     {
-      path:"/userLogin",
-      name:"userLogin",
-      component:userLogin,
-      props:true
+      path: "/userLogin",
+      name: "userLogin",
+      component: userLogin,
+      props: true
     },
     {
-      path:"/registsuccess",
-      name:"registsuccess",
-      redirect:"/"
+      path: "/registsuccess",
+      name: "registsuccess",
+      redirect: "/"
     },
     {
       path: "/admin",
       name: "admin",
       component: admin,
       props: true,
-      meta:{
-        requireAuth:true
+      meta: {
+        requireAuth: true
       },
-      children: [
-        {
+      children: [{
           path: "/addUser",
           name: "addUser",
           component: addUser,
           props: true,
-          meta:{
-            requireAuth:true
+          meta: {
+            requireAuth: true
           }
         },
         {
@@ -72,62 +78,89 @@ const router =  new Router({
           name: "queryUser",
           component: queryUser,
           props: true,
-          meta:{
-            requireAuth:true
+          meta: {
+            requireAuth: true
           }
-        }, 
+        },
         {
           path: "/addOrder",
           name: "addOrder",
           component: addOrder,
           props: true,
-          meta:{
-            requireAuth:true
+          meta: {
+            requireAuth: true
           }
         },
         {
-          path:"/queryOrder",
-          name:"queryOrder",
-          component:queryOrder,
-          props:true,
-          meta:{
-            requireAuth:true
-          }
-        },
-        {
-          path:"/queryAcceptOrder",
-          name:"queryAcceptOrder",
-          component:queryAcceptOrder,
-          props:true,
-          meta:{
-            requireAuth:true
-          }
-        },
-        {
-          path:"/updateUser",
-          name:"updateUser",
-          component:updateUser,
-          props:true, 
-          meta:{
-            requireAuth:true
-          }
-        },
-        {
-          path:"/classify",
-          name:"classify",
-          component:classify,
-          props:true,
-          meta:{
-            requireAuth:true
-          }
-        },
-        {
-          path:"/queryClassify",
-          name:"queryClassify",
-          component:queryClassify,
+          path: "/queryOrder",
+          name: "queryOrder",
+          component: queryOrder,
           props: true,
-          meta:{
-            requireAuth:true
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: "/queryAcceptOrder",
+          name: "queryAcceptOrder",
+          component: queryAcceptOrder,
+          props: true,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: "/updateUser",
+          name: "updateUser",
+          component: updateUser,
+          props: true,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: "/classify",
+          name: "classify",
+          component: classify,
+          props: true,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: "/queryClassify",
+          name: "queryClassify",
+          component: queryClassify,
+          props: true,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: "/inorderDetail",
+          name: "inorderDetail",
+          component: inorderDetail,
+          props: true,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: "/orderBill",
+          name: "orderBill",
+          component: orderBill,
+          props: true,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: "/orderCount",
+          name: "orderCount",
+          component: orderCount,
+          props: true,
+          meta: {
+            requireAuth: true
           }
         }
       ]
@@ -137,24 +170,24 @@ const router =  new Router({
 
 router.beforeEach((to, from, next) => {
   // ${//to and from are Route Object,next() must be called to resolve the hook}
-  if(to.meta.requireAuth==true){ 
-    if(store.state.user.name!=undefined){
+  if (to.meta.requireAuth == true) {
+    if (store.state.user.name != undefined) {
       next()
-    }else{
-      if(to.path=="/userLogin"){
+    } else {
+      if (to.path == "/userLogin") {
         next();
-      }else{
+      } else {
         next({
-          path:"/userLogin",
-          query:{
-            redirect:to.fullPath
+          path: "/userLogin",
+          query: {
+            redirect: to.fullPath
           }
         });
       }
     }
-  }else{
+  } else {
     next();
   }
-  
+
 })
 export default router;
